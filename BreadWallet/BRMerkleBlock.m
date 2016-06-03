@@ -32,10 +32,10 @@
 
 #define MAX_TIME_DRIFT        (2*60*60)     // the furthest in the future a block is allowed to be timestamped
 #define MAX_PROOF_OF_WORK      0x1e0fffff   // highest value for difficulty target (higher values are less difficult)
-#define TARGET_TIMESPAN       (4*60*60)     // the targeted timespan between difficulty target adjustments
-#define TARGET_TIMESPAN_NEW   60            // the new targeted timespan between difficulty target adjustments
-#define TARGET_SPACING        60
-#define DIFF_CHANGE_TARGET    145000
+#define TARGET_TIMESPAN       (5*24*60*60)     // the targeted timespan between difficulty target adjustments
+#define TARGET_TIMESPAN_NEW   (3*60*60)            // the new targeted timespan between difficulty target adjustments
+#define TARGET_SPACING        (3*60)
+#define DIFF_CHANGE_TARGET    97050
 
 
 #define BLOCK_VERSION_AUXPOW_AUXBLOCK 0x00620102
