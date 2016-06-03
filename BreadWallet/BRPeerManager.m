@@ -78,7 +78,7 @@ static const char *dns_seeds[] = {
 
 #else // main net
 
-#define GENESIS_BLOCK_HASH @"1a91e3dace36e2be3bf030a65679fe821aa1d6ef92e7c9902eb318182c355691".hexToData.reverse
+#define GENESIS_BLOCK_HASH @"660f734cf6c6d16111bde201bbd2122873f2f2c078b969779b9d4c99732354fd".hexToData.reverse
 
 #define GENESIS_BLOCK [[BRMerkleBlock alloc] initWithBlockHash:GENESIS_BLOCK_HASH version:1\
     prevBlock:@"0000000000000000000000000000000000000000000000000000000000000000".hexToData\
@@ -971,15 +971,17 @@ static const char *dns_seeds[] = {
 
     block.height = prev.height + 1;
 
-    if ((block.height % BLOCK_DIFFICULTY_INTERVAL) == 0) { // hit a difficulty transition, find previous transition time
+    if ((block.height % [block getTargetInterval:block.height]) == 0) { // hit a difficulty transition, find previous transition time
         BRMerkleBlock *b = block;
 
-        for (uint32_t i = 0; b && i < BLOCK_DIFFICULTY_INTERVAL; i++) {
+        for (uint32_t i = 0; b && i < [b getTargetInterval:b.height]; i++) {
             b = self.blocks[b.prevBlock];
         }
 
         transitionTime = b.timestamp;
 
+        // Need to remove one less block for the smileycoin cursor 
+        b = self.blocks[b.prevBlock];
         while (b) { // free up some memory
             b = self.blocks[b.prevBlock];
             if (b) [self.blocks removeObjectForKey:b.blockHash];

@@ -73,4 +73,7 @@ parentBlock:(NSData*)parentBlock;
 // height is not a multiple of BLOCK_DIFFICULTY_INTERVAL.
 - (BOOL)verifyDifficultyFromPreviousBlock:(BRMerkleBlock *)previous andTransitionTime:(NSTimeInterval)time andStoredBlocks:(NSMutableDictionary *)blocks;
 
+- (int32_t) getTargetTimespan:(int32_t)height;
+- (int32_t) getTargetInterval:(int32_t)height;
+
 @end
