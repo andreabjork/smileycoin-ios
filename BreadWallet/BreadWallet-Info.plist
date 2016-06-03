@@ -69,10 +69,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.codefrosting.dough</string>
+			<string>com.tutor-web.smiley</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>dough</string>
+				<string>smiley</string>
 			</array>
 		</dict>
 	</array>

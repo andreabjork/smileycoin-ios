@@ -1,9 +1,9 @@
-build and install doughwallet
+build and install smileywallet
 -----------------------------
 
-1. clone the doughwallet git repository: 
+1. clone the smileywallet git repository: 
 
-   `git clone https://github.com/peritus/doughwallet.git`
+   `git clone https://github.com/andreabjork/smileywallet-ios.git`
 
 2. open breadwallet/BreadWallet.xcodeproj in XCode 5.0 or later
 
