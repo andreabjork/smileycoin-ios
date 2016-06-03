@@ -572,8 +572,8 @@ services:(uint64_t)services
         uint16_t port = CFSwapInt16BigToHost(*(const uint16_t *)((const uint8_t *)message.bytes + off +
                                                                  sizeof(uint32_t)*2 + 20));
         
-        // if address time is more than 1 min in the future or older than reference date, set to 5 days old
-        if (timestamp > now + 1*60 || timestamp < 0) timestamp = now - 5*24*60*60;
+        // if address time is more than 3 min in the future or older than reference date, set to 5 days old
+        if (timestamp > now + 3*60 || timestamp < 0) timestamp = now - 5*24*60*60;
 
         // subtract two hours and add it to the list
         [peers addObject:[[BRPeer alloc] initWithAddress:address port:port timestamp:timestamp - 2*60*60
