@@ -30,9 +30,9 @@
 #import "BRWallet.h"
 #import "BRBubbleView.h"
 
-#define QR_TIP      NSLocalizedString(@"Let others scan this QR code to get your dogecoin address. Anyone can send "\
-                    "dogecoins to your wallet by transferring them to your address.", nil)
-#define ADDRESS_TIP NSLocalizedString(@"This is your dogecoin address. Tap to copy it or send it by email or sms. The "\
+#define QR_TIP      NSLocalizedString(@"Let others scan this QR code to get your smileycoin address. Anyone can send "\
+                    "smileycoins to your wallet by transferring them to your address.", nil)
+#define ADDRESS_TIP NSLocalizedString(@"This is your smileycoin address. Tap to copy it or send it by email or sms. The "\
                     "address will change each time you receive funds, but old addresses always work.", nil)
 
 @interface BRReceiveViewController ()
@@ -174,7 +174,7 @@
 
     UIActionSheet *a = [UIActionSheet new];
 
-    a.title = [NSString stringWithFormat:NSLocalizedString(@"Receive dogecoin at this address: %@", nil),
+    a.title = [NSString stringWithFormat:NSLocalizedString(@"Receive smileycoin at this address: %@", nil),
                self.paymentAddress];
     a.delegate = self;
     [a addButtonWithTitle:NSLocalizedString(@"copy to clipboard", nil)];
@@ -210,8 +210,8 @@
         if ([MFMailComposeViewController canSendMail]) {
             MFMailComposeViewController *c = [MFMailComposeViewController new];
             
-            [c setSubject:NSLocalizedString(@"Dogecoin address", nil)];
-            [c setMessageBody:[@"dogecoin:" stringByAppendingString:self.paymentAddress] isHTML:NO];
+            [c setSubject:NSLocalizedString(@"Smileycoin address", nil)];
+            [c setMessageBody:[@"smileycoin:" stringByAppendingString:self.paymentAddress] isHTML:NO];
             c.mailComposeDelegate = self;
             [self.navigationController presentViewController:c animated:YES completion:nil];
             c.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wallpaper-default"]];
@@ -225,7 +225,7 @@
         if ([MFMessageComposeViewController canSendText]) {
             MFMessageComposeViewController *c = [MFMessageComposeViewController new];
             
-            c.body = [@"dogecoin:" stringByAppendingString:self.paymentAddress];
+            c.body = [@"smileycoin:" stringByAppendingString:self.paymentAddress];
             c.messageComposeDelegate = self;
             [self.navigationController presentViewController:c animated:YES completion:nil];
             c.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wallpaper-default"]];
