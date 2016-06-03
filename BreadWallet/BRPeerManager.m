@@ -474,7 +474,7 @@ static const char *dns_seeds[] = {
     if (! [transaction isSigned]) {
         if (completion) {
             completion([NSError errorWithDomain:@"DoughWallet" code:401 userInfo:@{NSLocalizedDescriptionKey:
-                        NSLocalizedString(@"dogecoin transaction not signed", nil)}]);
+                        NSLocalizedString(@"smileycoin transaction not signed", nil)}]);
         }
         return;
     }
@@ -482,7 +482,7 @@ static const char *dns_seeds[] = {
     if (! self.connected) {
         if (completion) {
             completion([NSError errorWithDomain:@"DoughWallet" code:-1009 userInfo:@{NSLocalizedDescriptionKey:
-                        NSLocalizedString(@"not connected to the dogecoin network", nil)}]);
+                        NSLocalizedString(@"not connected to the smileycoin network", nil)}]);
         }
         return;
     }
@@ -980,7 +980,7 @@ static const char *dns_seeds[] = {
 
         transitionTime = b.timestamp;
 
-        // Need to remove one less block for the smileycoin cursor 
+        // Need to remove one less block for the smileycoin cursor
         b = self.blocks[b.prevBlock];
         while (b) { // free up some memory
             b = self.blocks[b.prevBlock];

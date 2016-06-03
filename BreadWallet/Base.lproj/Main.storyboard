@@ -1744,7 +1744,7 @@ Use it to restore your wallet on another device if this one is ever lost or brok
                                 %no-eye%
 
       DO NOT let anyone see your backup
-      phrase or they can spend your dogecoins.
+      phrase or they can spend your smileycoins.
 
 
                                 %no-shot%
@@ -2883,7 +2883,7 @@ Cgo
                                         <string key="content">
 
 WRITE IT DOWN and keep it safe. Lose
-it and you may lose your dogecoins forever.</string>
+it and you may lose your smileycoins forever.</string>
                                         <attributes>
                                             <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="15" name="HelveticaNeue-Light"/>
