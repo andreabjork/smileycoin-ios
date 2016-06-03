@@ -12,30 +12,30 @@
 			<key>CFBundleTypeIconFiles</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>Dogecoin Payment Request</string>
+			<string>Smileycoin Payment Request</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>doge.payment.request</string>
+				<string>smileycoin.paymentrequest</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>Dogecoin Payment</string>
+			<string>Smileycoin Payment</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>doge.payment.payment</string>
+				<string>smileycoin.payment</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>Dogecoin Payment ACK</string>
+			<string>Smileycoin Payment ACK</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>doge.payment.ack</string>
+				<string>smileycoin.payment.ack</string>
 			</array>
 		</dict>
 	</array>
@@ -59,10 +59,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>dogecoin</string>
+			<string>smileycoin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>dogecoin</string>
+				<string>smileycoin</string>
 			</array>
 		</dict>
 		<dict>
@@ -108,13 +108,13 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Dogecoin Payment Request</string>
+			<string>Smileycoin Payment Request</string>
 			<key>UTTypeIdentifier</key>
-			<string>doge.payment.request</string>
+			<string>smileycoin.paymentrequest</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.mime-type</key>
-				<string>application/vnd.doge.payment.request</string>
+				<string>application/smileycoin-paymentrequest</string>
 			</dict>
 		</dict>
 		<dict>
@@ -123,13 +123,13 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Dogecoin Payment</string>
+			<string>Smileycoin Payment</string>
 			<key>UTTypeIdentifier</key>
-			<string>doge.payment.payment</string>
+			<string>smileycoin.payment</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.mime-type</key>
-				<string>application/vnd.doge.payment.payment</string>
+				<string>application/smileycoin-payment</string>
 			</dict>
 		</dict>
 		<dict>
@@ -138,13 +138,13 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Dogecoin Payment ACK</string>
+			<string>Smileycoin Payment ACK</string>
 			<key>UTTypeIdentifier</key>
-			<string>doge.payment.ack</string>
+			<string>smileycoin.paymentack</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.mime-type</key>
-				<string>application/vnd.doge.payment.ack</string>
+				<string>application/smileycoin-paymentack</string>
 			</dict>
 		</dict>
 	</array>

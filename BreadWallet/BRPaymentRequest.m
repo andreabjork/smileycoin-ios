@@ -80,7 +80,7 @@
     NSURL *url = [NSURL URLWithString:s];
     
     if (! url || ! url.scheme) {
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"dogecoin://%@", s]];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"smileycoin://%@", s]];
     }
     else if (! url.host && url.resourceSpecifier) {
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", url.scheme, url.resourceSpecifier]];
@@ -115,7 +115,7 @@
 {
     if (! self.paymentAddress) return nil;
 
-    NSMutableString *s = [NSMutableString stringWithFormat:@"dogecoin:%@", self.paymentAddress];
+    NSMutableString *s = [NSMutableString stringWithFormat:@"smileycoin:%@", self.paymentAddress];
     NSMutableArray *q = [NSMutableArray array];
     
     if (self.amount > 0) {
@@ -172,11 +172,11 @@ completion:(void (^)(BRPaymentProtocolRequest *req, NSError *error))completion
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:u
                                 cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:timeout];
 
-    [req addValue:@"application/vnd.doge.payment.request" forHTTPHeaderField:@"Accept"];
+    [req addValue:@"application/smileycoin-paymentrequest" forHTTPHeaderField:@"Accept"];
 
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue currentQueue]
     completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (! [response.MIMEType.lowercaseString isEqual:@"application/vnd.doge.payment.request"] || data.length > 50000){
+        if (! [response.MIMEType.lowercaseString isEqual:@"application/smileycoin-paymentrequest"] || data.length > 50000){
             completion(nil, [NSError errorWithDomain:@"DoughWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
                              [NSString stringWithFormat:NSLocalizedString(@"unexpected response from %@", nil), u.host]
                             }]);
@@ -221,8 +221,8 @@ completion:(void (^)(BRPaymentProtocolACK *ack, NSError *error))completion
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:u
                                 cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:timeout];
 
-    [req addValue:@"application/vnd.doge.payment.payment" forHTTPHeaderField:@"Content-Type"];
-    [req addValue:@"application/vnd.doge.payment.ack" forHTTPHeaderField:@"Accept"];
+    [req addValue:@"application/smileycoin-payment" forHTTPHeaderField:@"Content-Type"];
+    [req addValue:@"application/smileycoin-paymentack" forHTTPHeaderField:@"Accept"];
     [req setHTTPMethod:@"POST"];
     [req setHTTPBody:payment.data];
 
@@ -233,7 +233,7 @@ completion:(void (^)(BRPaymentProtocolACK *ack, NSError *error))completion
             return;
         }
 
-        if (! [response.MIMEType.lowercaseString isEqual:@"application/vnd.doge.payment.ack"] || data.length > 50000) {
+        if (! [response.MIMEType.lowercaseString isEqual:@"application/smileycoin-paymentack"] || data.length > 50000) {
             completion(nil, [NSError errorWithDomain:@"DoughWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
                              [NSString stringWithFormat:NSLocalizedString(@"unexpected response from %@", nil), u.host]
                             }]);
