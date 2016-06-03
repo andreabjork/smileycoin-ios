@@ -493,13 +493,13 @@ completion:(void (^)(BRTransaction *tx, NSError *error))completion
     NSString *address = [[BRKey keyWithPrivateKey:privKey] address];
 
     if (! address) {
-        completion(nil, [NSError errorWithDomain:@"DoughWallet" code:187 userInfo:@{NSLocalizedDescriptionKey:
+        completion(nil, [NSError errorWithDomain:@"Smileywallet" code:187 userInfo:@{NSLocalizedDescriptionKey:
                          NSLocalizedString(@"not a valid private key", nil)}]);
         return;
     }
 
     if ([self.wallet containsAddress:address]) {
-        completion(nil, [NSError errorWithDomain:@"DoughWallet" code:187 userInfo:@{NSLocalizedDescriptionKey:
+        completion(nil, [NSError errorWithDomain:@"Smileywallet" code:187 userInfo:@{NSLocalizedDescriptionKey:
                          NSLocalizedString(@"this private key is already in your wallet", nil)}]);
         return;
     }
@@ -522,7 +522,7 @@ completion:(void (^)(BRTransaction *tx, NSError *error))completion
 
         if (error) {
             if ([[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] hasPrefix:@"No free outputs"]) {
-                error = [NSError errorWithDomain:@"DoughWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
+                error = [NSError errorWithDomain:@"Smileywallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
                          NSLocalizedString(@"this private key is empty", nil)}];
             }
 
@@ -532,7 +532,7 @@ completion:(void (^)(BRTransaction *tx, NSError *error))completion
 
         if (! [json isKindOfClass:[NSDictionary class]] ||
             ! [json[@"unspent_outputs"] isKindOfClass:[NSArray class]]) {
-            completion(nil, [NSError errorWithDomain:@"DoughWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
+            completion(nil, [NSError errorWithDomain:@"Smileywallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
                              [NSString stringWithFormat:NSLocalizedString(@"unexpected response from %@", nil), u.host]
                             }]);
             return;
@@ -546,7 +546,7 @@ completion:(void (^)(BRTransaction *tx, NSError *error))completion
                 ! [utxo[@"tx_output_n"] isKindOfClass:[NSNumber class]] ||
                 ! [utxo[@"script"] isKindOfClass:[NSString class]] ||
                 ! [utxo[@"script"] hexToData]) {
-                completion(nil, [NSError errorWithDomain:@"DoughWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
+                completion(nil, [NSError errorWithDomain:@"Smileywallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
                                  [NSString stringWithFormat:NSLocalizedString(@"unexpected response from %@", nil),
                                   u.host]}]);
                 return;
@@ -562,7 +562,7 @@ completion:(void (^)(BRTransaction *tx, NSError *error))completion
         }
 
         if (balance == 0) {
-            completion(nil, [NSError errorWithDomain:@"DoughWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
+            completion(nil, [NSError errorWithDomain:@"Smileywallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
                              NSLocalizedString(@"this private key is empty", nil)}]);
             return;
         }
@@ -572,7 +572,7 @@ completion:(void (^)(BRTransaction *tx, NSError *error))completion
         standardFee = tx.standardFee;
 
         if (standardFee + TX_MIN_OUTPUT_AMOUNT > balance) {
-            completion(nil, [NSError errorWithDomain:@"DoughWallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
+            completion(nil, [NSError errorWithDomain:@"Smileywallet" code:417 userInfo:@{NSLocalizedDescriptionKey:
                              NSLocalizedString(@"transaction fees would cost more than the funds available on this "
                                                "private key (due to tiny \"dust\" deposits)",nil)}]);
             return;
@@ -581,7 +581,7 @@ completion:(void (^)(BRTransaction *tx, NSError *error))completion
         [tx addOutputAddress:[self.wallet changeAddress] amount:balance - standardFee];
 
         if (! [tx signWithPrivateKeys:@[privKey]]) {
-            completion(nil, [NSError errorWithDomain:@"DoughWallet" code:401 userInfo:@{NSLocalizedDescriptionKey:
+            completion(nil, [NSError errorWithDomain:@"Smileywallet" code:401 userInfo:@{NSLocalizedDescriptionKey:
                              NSLocalizedString(@"error signing transaction", nil)}]);
             return;
         }
