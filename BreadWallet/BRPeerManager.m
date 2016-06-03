@@ -357,9 +357,7 @@ static const struct { uint32_t height; char *hash; time_t timestamp; uint32_t ta
 };
 
 static const char *dns_seeds[] = {
-    "seed.dogecoin.com",
-    "seed.mophides.com",
-    "seed.dogechain.info",
+    "box.smileyco.in"
 };
 
 #endif
