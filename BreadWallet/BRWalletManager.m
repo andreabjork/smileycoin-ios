@@ -39,8 +39,8 @@
 #import "NSManagedObject+Sugar.h"
 #import "Reachability.h"
 
-#define BTC         @"\xc3\x90"     // capital D with stroke (utf-8)
-#define BITS        @"Koinu"
+#define BTC         @"SMLY"     // capital D with stroke (utf-8)
+#define BITS        @"SMLY"
 #define NARROW_NBSP @"\xE2\x80\xAF" // narrow no-break space (utf-8)
 
 #define LOCAL_CURRENCY_SYMBOL_KEY @"LOCAL_CURRENCY_SYMBOL"

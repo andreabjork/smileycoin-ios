@@ -38,7 +38,7 @@
 
 #define BALANCE_TIP NSLocalizedString(@"This is your smileycoin balance. smileycoin is a currency. "\
                                        "The exchange rate changes with the market.", nil)
-#define BITS_TIP    NSLocalizedString(@"%@ is for 'Smileycoin'.", nil)
+#define BITS_TIP    NSLocalizedString(@"%@ is for 'Smileycoin'", nil)
 
 #define BACKUP_DIALOG_TIME_KEY @"BACKUP_DIALOG_TIME"
 
