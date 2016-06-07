@@ -43,7 +43,6 @@
     BRBubbleView *v = [[self alloc] initWithFrame:CGRectMake(center.x - MARGIN, center.y - MARGIN, MARGIN*2, MARGIN*2)];
 
     v.text = text;
-    v.label.textColor = [UIColor whiteColor];
     return v;
 }
 
@@ -67,6 +66,7 @@
                                                            frame.size.height - MARGIN*2)];
     self.label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.label.textAlignment = NSTextAlignmentCenter;
+    self.label.textColor = [UIColor whiteColor];
     self.label.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0];
     self.label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.15];
     self.label.shadowOffset = CGSizeMake(0.0, 1.0);
