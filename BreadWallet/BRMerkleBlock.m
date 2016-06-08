@@ -309,8 +309,9 @@ parentBlock:(NSData*)parentBlock
     int32_t targetTimespan = [self getTargetTimespan:_height];
     int32_t targetInterval = [self getTargetInterval:_height];
     
+    // If the height doesn't make sense for this block, don't accept it
     if (! [_prevBlock isEqual:previous.blockHash] || _height != previous.height + 1) return NO;
-    if ((_height % targetInterval) == 0 && time == 0) return NO;
+    // If this isn't supposed to be a difficulty change, just accept the block if the difficulty makes sense
     if ((_height % targetInterval) != 0) return (_target == previous.target) ? YES : NO;
     
     int32_t nHeight = previous.height + 1;
@@ -320,7 +321,7 @@ parentBlock:(NSData*)parentBlock
     return YES; // don't worry about difficulty on testnet for now
 #endif
 
-    // Dogecoin: This fixes an issue where a 51% attack can change difficulty at will.
+    // This fixes an issue where a 51% attack can change difficulty at will.
     // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
     int blockstogoback = targetInterval - 1;
     if ((nHeight+1) != targetInterval)
