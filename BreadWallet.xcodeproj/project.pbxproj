@@ -4011,7 +4011,7 @@
 					"$(SRCROOT)/openssl/include",
 				);
 				INFOPLIST_FILE = "BreadWallet/BreadWallet-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.codefrosting.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tutor-web.smileywallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -4204,7 +4204,7 @@
 					"$(SRCROOT)/openssl/include",
 				);
 				INFOPLIST_FILE = "BreadWallet/BreadWallet-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.codefrosting.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tutor-web.smileywallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -4227,7 +4227,7 @@
 					"$(SRCROOT)/openssl/include",
 				);
 				INFOPLIST_FILE = "BreadWallet/BreadWallet-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.codefrosting.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tutor-web.smileywallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
