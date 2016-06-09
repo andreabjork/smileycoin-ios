@@ -55,12 +55,13 @@
 #define CREATION_TIME_KEY         @"creationtime"
 
 #define SEED_ENTROPY_LENGTH     (128/8)
-#define SEC_ATTR_SERVICE        @"com.codefrosting.doughwallet"
+#define SEC_ATTR_SERVICE        @"com.tutor-web.smileywallet"
 #define DEFAULT_CURRENCY_PRICE  500.0
 #define DEFAULT_CURRENCY_CODE   @"USD"
 
 #define UNSPENT_URL @"https://dogechain.info/api/v1/unspent/"
 #define TICKER_URL  @"https://www.doughwallet.net/ticker"
+#define TICKER_CONVERT_URL @"https://c-cex.com/t/smly-doge.json" // Convert from SMLY to DOGE, then use DOGE rates.
 
 static BOOL setKeychainData(NSData *data, NSString *key)
 {
@@ -400,6 +401,9 @@ static NSData *getKeychainData(NSString *key)
 
 - (void)updateExchangeRate
 {
+    // Get the exchange rate for SMLY so we can convert it to DOGE first.
+    [self getSMLYExchangeRate];
+    
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateExchangeRate) object:nil];
     [self performSelector:@selector(updateExchangeRate) withObject:nil afterDelay:60.0];
 
@@ -442,7 +446,8 @@ static NSData *getKeychainData(NSString *key)
             self.localFormat.currencyCode = self.localCurrencyCode;
         }
 
-        _localCurrencyPrice = [json[self.localCurrencyCode][@"last"] doubleValue];
+        NSLog(@"Curious to see if smlyPrice has actually been updated by now, see %f ", _smlyPrice);
+        _localCurrencyPrice = [json[self.localCurrencyCode][@"last"] doubleValue]*_smlyPrice;
         self.localFormat.maximum = @((MAX_MONEY/SATOSHIS)*self.localCurrencyPrice);
         _currencyCodes = [NSArray arrayWithArray:json.allKeys];
         
@@ -468,6 +473,48 @@ static NSData *getKeychainData(NSString *key)
         });
     }];
 }
+
+- (void)getSMLYExchangeRate
+{
+    NSLog(@"Were going to try to get the smly exchange rate");
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(getSMLYExchangeRate) object:nil];
+    [self performSelector:@selector(getSMLYExchangeRate) withObject:nil afterDelay:60.0];
+    
+    if (self.reachability.currentReachabilityStatus == NotReachable) return;
+    
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:TICKER_CONVERT_URL]
+                                         cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    
+    [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue currentQueue]
+    completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (connectionError) {
+            NSLog(@"%@", connectionError);
+            return;
+        }
+        
+        NSError *error = nil;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        
+        if (error || ! [json isKindOfClass:[NSDictionary class]] ||
+            ! [json[@"ticker"] isKindOfClass:[NSDictionary class]] ||
+            ! [json[@"ticker"][@"lastbuy"] isKindOfClass:[NSNumber class]] ) {
+                 NSLog(@"unexpected response from %@:\n%@", req.URL.host,
+                       [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                 return;
+             }
+        
+        // Sell SMLY for DOGE (i.e. 'buy' DOGE, this is the correct price according to c-cex):
+        _smlyPrice = [json[@"ticker"][@"lastbuy"] doubleValue];
+        NSLog(@"Boom!!! Got the smly buy price, its %f ", _smlyPrice);
+        
+        if (! self.wallet) return;
+        
+        //SEL updateExchangeRateSEL = @selector(updateExchangeRate);
+        //[self performSelector:updateExchangeRateSEL];
+        
+    }];
+}
+
 
 // given a private key, queries blockchain for unspent outputs and calls the completion block with a signed transaction
 // that will sweep the balance into the wallet (doesn't publish the tx)
