@@ -382,7 +382,7 @@ sequence:(uint32_t)sequence
 - (uint64_t)standardFee
 {
     uint64_t fee = ((self.size + 999)/1000)*TX_FEE_PER_KB;
-    // Dogecoin: dust spam protection fee
+    // dust spam protection fee
     for (NSNumber *amt in self.outputAmounts) {
         if (amt.unsignedLongLongValue < SATOSHIS) {
             fee += SATOSHIS;

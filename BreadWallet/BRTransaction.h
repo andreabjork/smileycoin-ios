@@ -26,7 +26,7 @@
 #import <Foundation/Foundation.h>
 
 #define TX_FEE_PER_KB        100000000ULL     // standard tx fee per kb of tx size, rounded up to nearest kb
-#define TX_MIN_OUTPUT_AMOUNT 0LL         // dogecoin: The fees imposed on each dust txo is considered sufficient spam deterrant
+#define TX_MIN_OUTPUT_AMOUNT 0LL         // The fees imposed on each dust txo is considered sufficient spam deterrant
 #define TX_MAX_SIZE          100000      // no tx can be larger than this size in bytes
 #define TX_UNCONFIRMED       INT32_MAX   // block height indicating transaction is unconfirmed
 #define TX_MAX_LOCK_HEIGHT   500000000u  // a lockTime below this value is a block height, otherwise a timestamp

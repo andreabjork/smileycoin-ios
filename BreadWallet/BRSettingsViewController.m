@@ -219,7 +219,7 @@
 
 - (IBAction)about:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://doughwallet.net"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tutor-web.info/smileycoin"]];
 }
 
 #pragma mark - UITableViewDataSource
